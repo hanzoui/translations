@@ -1,7 +1,7 @@
 #!/bin/bash
 set -euo pipefail
 
-BASE_URL=${BASE_URL:-"https://api.comfy.org"}
+BASE_URL=${BASE_URL:-"https://api.hanzo.ai"}
 JWT_TOKEN=${JWT_TOKEN:-"missing.jwt.token"}
 
 for folder in translations/*/; do

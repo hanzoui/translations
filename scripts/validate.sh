@@ -1,7 +1,7 @@
 #!/bin/bash
 set -euo pipefail
 
-BASE_URL=${BASE_URL:-"https://api.comfy.org"}
+BASE_URL=${BASE_URL:-"https://api.hanzo.ai"}
 for entry in translations/*/; do
     if [ ! -d "$entry" ]; then
         echo "not a directory: $entry"
