@@ -1,3 +1,4 @@
+# Secrets: Hanzo KMS (kms.hanzo.ai) — auth via Hanzo IAM
 name: Validate Node Translation
 
 on:
@@ -11,6 +12,13 @@ jobs:
   generate-json:
     runs-on: ubuntu-latest
     steps:
+      - name: Fetch secrets from Hanzo KMS
+        id: kms
+        uses: hanzoui/.github/actions/kms-secrets@main
+        with:
+          kms_client_id: ${{ secrets.KMS_CLIENT_ID }}
+          kms_client_secret: ${{ secrets.KMS_CLIENT_SECRET }}
+          secrets: 'JWT_TOKEN'
       - name: Checkout repository
         uses: actions/checkout@v4
 
@@ -19,5 +27,5 @@ jobs:
 
       - name: Add Translation
         env:
-          JWT_TOKEN: ${{ secrets.JWT_TOKEN }}
+          JWT_TOKEN: ${{ steps.kms.outputs.JWT_TOKEN }}
         run: ./scripts/add-translation.sh
